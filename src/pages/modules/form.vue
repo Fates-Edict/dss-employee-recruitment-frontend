@@ -18,14 +18,12 @@
       />
     </q-breadcrumbs>
 
-    
-    <FormWrapper :meta="Meta">
-      <div class="col-12 row q-col-gutter-md">
-        <q-input class="col-12 col-md-4" outlined v-model="text" :label="$Lang.name" dense />
-        <q-input class="col-12 col-md-4" outlined v-model="text" :label="$Lang.username" dense />
-        <q-input class="col-12 col-md-4" outlined v-model="text" :label="$Lang.email" dense />
-        <q-input class="col-12 col-md-4" outlined v-model="text" :label="$Lang.password" dense />
-      </div>
+    <FormWrapper :meta="Meta" @onSubmit="onSubmit">
+      <q-form @submit="onSubmit" class="col-12 row">
+        <div class="col-12 row q-col-gutter-md">
+          <q-input class="col-12 col-md-3" outlined v-model="dataModel.name" :label="$Lang.name" dense />
+        </div>
+      </q-form>
     </FormWrapper>
   </div>
 </template>
@@ -36,7 +34,21 @@ export default {
   data() {
     return {
       Meta,
+      dataModel: null
     };
   },
+
+  created() {
+    this.dataModel = this.$Helper.unReactive(this.Meta.model)
+  },
+
+  methods: {
+    onSubmit() {
+      // this.$axios.defaults.withCredentials = true;
+      // this.$axios.get(`${this.$Helper.rootBaseApi()}/sanctum/csrf-cookie`).then((response) => {
+      //   console.log(response)
+      // })
+    }
+  }
 };
 </script>

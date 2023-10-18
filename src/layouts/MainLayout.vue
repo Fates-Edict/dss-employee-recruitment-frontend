@@ -43,6 +43,7 @@ export default {
   },
   created() {
     this.defaultLanguage()
+    this.getMe()
   },
   data() {
     return {
@@ -51,9 +52,9 @@ export default {
         { label: 'Dashboard', icon: 'home', path: '/', childs: [] },
         { label: 'User Managements', icon: 'manage_accounts', path: '', 
           childs: [
-            { label: 'Users', icon: 'group', path: '/users' },
-            { label: 'Roles', icon: 'admin_panel_settings', path: '/roles' },
-            // { label: 'Roles', icon: 'shield_person', path: '/roles' }
+            { label: 'Users', icon: 'group', path: '/users', module: 'users' },
+            { label: 'Roles', icon: 'admin_panel_settings', path: '/roles', module: 'roles' },
+            { label: 'Modules', icon: 'content_copy', path: '/modules', module: 'modules' },
           ]
         },
       ],
@@ -64,7 +65,29 @@ export default {
     }
   },
 
+  watch: {
+    '$route'() {
+      this.getMe()
+    }
+  },
+
   methods: {
+    getMe() {
+      const token = localStorage.getItem('token') || null
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      this.$api.get('me', config).then((full) => {
+        if(full.status === 200) {
+          
+        }
+      }).catch((resE) => {
+        if(resE.response.status === 401) {
+          localStorage.removeItem('token')
+          this.$router.push({ name: 'login' })
+        }
+      })
+    },
     defaultLanguage() {
       if(!localStorage.getItem('language')) localStorage.setItem('language', 'EN')
     },

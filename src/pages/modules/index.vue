@@ -37,7 +37,7 @@
 import Meta from "./meta";
 
 export default {
-  name: "IndexUsers",
+  name: "IndexModules",
   data() {
     return {
       loading: false,
@@ -53,15 +53,15 @@ export default {
   },
   methods: {
     getData() {
-      const endpoint = this.$Helper.baseApi() + this.Meta.endpoint;
-      this.$api.get(this.Meta.endpoint, this.$Helper.getToken()).then((response) => {
+      this.$api.get(this.Meta.endpoint).then((response) => {
         if (response.status === 200) {
           const data = response.data.data;
+          console.log(data)
         }
       });
     },
     onAdd() {
-      this.$router.push({ name: "add-users" });
+      this.$router.push({ name: "add-modules" });
     },
   },
 };

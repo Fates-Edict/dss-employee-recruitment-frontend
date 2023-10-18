@@ -1,7 +1,8 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
+import { Helper } from '../helpers/index.js'
 
-const api = axios.create({ baseURL: 'http://localhost:8000/api/' })
+const api = axios.create({ baseURL: Helper.baseApi() })
 
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api

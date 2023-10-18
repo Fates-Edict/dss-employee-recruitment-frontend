@@ -18,7 +18,7 @@
       :label="item.label"
       dense
       :default-opened="
-        item.childs.find((obj) => obj.path === $route.path) ? true : false
+        item.childs.find((obj) => obj.path.split('/')[1] === $route.path.split('/')[1]) ? true : false
       "
       :content-inset-level="0.5"
     >
@@ -29,7 +29,7 @@
           v-for="(val, i) in item.childs"
           :key="i"
           dense
-          :active="val.path === $route.path ? true : false"
+          :active="val.path.split('/')[1] === $route.path.split('/')[1] ? true : false"
           active-class="bg-grey-8 text-white"
           @click="$router.push({ path: val.path })"
         >

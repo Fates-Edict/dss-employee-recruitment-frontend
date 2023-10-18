@@ -1,31 +1,29 @@
 import { Helper } from 'boot/services'
 
 const Meta = {
-	endpoint: 'users',
-	title: 'Users',
+	endpoint: 'modules',
+	title: 'modules',
 	breadcrumbsIndex: [
 		{ label: 'Home', icon: 'home' },
 		{ label: 'User Managements', icon: 'manage_accounts' },
-		{ label: 'Users' }
+		{ label: 'Modules' }
 	],
 	breadcrumbsForm: [
 		{ label: 'Home', icon: 'home' },
 		{ label: 'User Managements', icon: 'manage_accounts' },
-		{ label: 'Users', icon: 'group' },
+		{ label: 'Modules', icon: 'group' },
 		{ label: 'Add' },
 	],
 	model: {
 		id: null,
-		role_id: null,
 		name: null,
-		username: null
+		slug: null
 	},
 	table: (H, L) => {
 		return [
 			{ name: 'action', label: L.action, field: 'id' },
-			{ name: 'role_id', label: L.role, field: 'role_name' },
 			{ name: 'name', label: L.name, field: 'name' },
-			{ name: 'username', label: L.username, field: 'username' }
+			{ name: 'slug', label: L.slug, field: 'slug' }
 		]
 	}
 }

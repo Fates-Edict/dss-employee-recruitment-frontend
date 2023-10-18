@@ -26,7 +26,25 @@ export const Helper = {
 	},
 
 	baseApi() {
-		const url = 'localhost:8000/api'
+		const url = 'http://localhost:8000/api'
 		return url
+	},
+
+	rootBaseApi() {
+		const url = 'http://localhost:8000'
+		return url
+	},
+
+	unReactive (arr) {
+		arr = JSON.stringify(arr)
+		return JSON.parse(arr)
+	},
+
+	getToken() {
+		const token = localStorage.getItem('token') || null
+		const config = {
+			headers: { Authorization: `Bearer ${token}` }
+		}
+		return config
 	}
 }
