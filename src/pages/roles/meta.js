@@ -26,7 +26,7 @@ const Meta = {
 	model: {
 		id: null,
 		name: null,
-		permissions: null
+		permissions: []
 	},
 	details: (L) => {
 		return [

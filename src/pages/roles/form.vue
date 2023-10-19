@@ -80,8 +80,8 @@ export default {
 
   created() {
     this.dataModel = this.$Helper.unReactive(this.Meta.model)
-    this.getModules()
     if(this.$route.params.id) this.getData(this.$route.params.id)
+    else this.getModules()
   },
 
   watch: {
@@ -110,24 +110,53 @@ export default {
     getData(id) {
       const endpoint = this.Meta.endpoint + `/${id}`
       this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
-        if(response.status === 200) this.dataModel = response.data.data
+        if(response.status === 200) {
+          this.dataModel = response.data.data
+          this.getModules(true)
+        }
       })
     },
 
-    getModules() {
+    getModules(edit = false) {
       const endpoint = 'modules'
       this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
         if(response.status === 200) {
-          let modules = response.data.data
-          modules.forEach(element => {
-            element.name = element.name
-            element.browse = false
-            element.create = false
-            element.read = false
-            element.update = false
-            element.delete = false
-          })
-          this.dataModel.permissions = modules
+          if(edit) {
+            const data = response.data.data
+            let modules = []
+            for(let i = 0; i < data.length; i++) {
+              modules.push(data[i].name)
+            }
+            let dataModel = []
+            for(let i = 0; i < this.dataModel.permissions.length; i++) {
+              dataModel.push(this.dataModel.permissions[i].name)
+            }
+            const difference = modules.filter(element => {
+              return !dataModel.includes(element)
+            })
+
+            difference.forEach(element => {
+              this.dataModel.permissions.push({
+                name: element,
+                browse: false,
+                create: false,
+                read: false,
+                update: false,
+                delete: false
+              })
+            })
+          } else {
+            let modules = response.data.data
+            modules.forEach(element => {
+              element.name = element.name
+              element.browse = false
+              element.create = false
+              element.read = false
+              element.update = false
+              element.delete = false
+            })
+            this.dataModel.permissions = modules
+          }
         }
       })
     },
