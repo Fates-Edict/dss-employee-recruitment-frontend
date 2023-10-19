@@ -29,6 +29,14 @@ const Meta = {
 		password: null,
 		email: null
 	},
+	details: (L) => {
+		return [
+			{ key: 'role_name', label: L.role, value: null },
+			{ key: 'name', label: L.name, value: null },
+			{ key: 'username', label: L.username, value: null },
+			{ key: 'email', label: L.email, value: null }
+		]
+	}, 
 	table: (H, L) => {
 		return [
 			{ name: 'action', label: L.action, field: 'id', style: 'width: 20px', align: 'center' },

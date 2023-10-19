@@ -51,6 +51,14 @@
         </q-td>
       </template>
     </q-table>
+
+    <ModalGeneral title="Detail" :config="modal">
+      <template v-slot:closeBtn>
+        <q-btn dense flat icon="close" v-close-popup @click="modal.show = false">
+					<q-tooltip>{{ $Lang.close }}</q-tooltip>
+				</q-btn>
+      </template>
+    </ModalGeneral>
   </div>
 </template>
 
@@ -64,7 +72,11 @@ export default {
       loading: false,
       Meta,
       table: null,
-      quickSearch: null
+      quickSearch: null,
+      modal: {
+        show: false,
+        params: null
+      }
     };
   },
   created() {
@@ -104,8 +116,19 @@ export default {
     onClickEdit(id) {
       this.$router.push({ name: `edit-${this.Meta.endpoint}`, params: { id } })
     },
-    onClickDetail() {
-      console.log('Detail')
+    onClickDetail(id) {
+      const endpoint = this.Meta.endpoint + '/' + id
+      this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
+        if(response.status === 200) {
+          const data = response.data.data
+          let details = this.Meta.details(this.$Lang)
+          details.forEach(element => {
+            element.value = data[element.key]
+          })
+          this.modal.params = details
+          this.modal.show = !this.modal.show
+        }
+      })
     },
     onClickDelete() {
       console.log('Delete')

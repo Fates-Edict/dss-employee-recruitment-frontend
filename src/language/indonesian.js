@@ -15,5 +15,6 @@ export const ID = {
 	slug: 'Slug',
 	update: 'Ubah',
 	delete: 'Hapus',
-	detail: 'Detail'
+	detail: 'Detail',
+	close: 'Tutup'
 }

@@ -15,5 +15,6 @@ export const EN = {
 	slug: 'Slug',
 	update: 'Update',
 	delete: 'Delete',
-	detail: 'Detail'
+	detail: 'Detail',
+	close: 'Close'
 }
