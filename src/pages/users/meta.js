@@ -3,6 +3,7 @@ import { Helper } from 'boot/services'
 const Meta = {
 	endpoint: 'users',
 	title: 'Users',
+	indexName: 'IndexUsers',
 	breadcrumbsIndex: [
 		{ label: 'Home', icon: 'home' },
 		{ label: 'User Managements', icon: 'manage_accounts' },

@@ -66,7 +66,7 @@
 import Meta from "./meta";
 
 export default {
-  name: "IndexUsers",
+  name: Meta.indexName,
   data() {
     return {
       loading: false,
@@ -112,7 +112,7 @@ export default {
       });
     },
     onAdd() {
-      this.$router.push({ name: "add-users" });
+      this.$router.push({ name: `add-${this.Meta.endpoint}` });
     },
     onClickEdit(id) {
       this.$router.push({ name: `edit-${this.Meta.endpoint}`, params: { id } })
@@ -123,9 +123,7 @@ export default {
         if(response.status === 200) {
           const data = response.data.data
           let details = this.Meta.details(this.$Lang)
-          details.forEach(element => {
-            element.value = data[element.key]
-          })
+          details.forEach(element => { element.value = data[element.key] })
           this.modal.title = data.name
           this.modal.params = details
           this.modal.show = !this.modal.show
