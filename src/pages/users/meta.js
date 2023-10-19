@@ -4,6 +4,7 @@ const Meta = {
 	endpoint: 'users',
 	title: 'Users',
 	indexName: 'IndexUsers',
+	formName: 'FormUsers',
 	breadcrumbsIndex: [
 		{ label: 'Home', icon: 'home' },
 		{ label: 'User Managements', icon: 'manage_accounts' },

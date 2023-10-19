@@ -36,7 +36,7 @@
 <script>
 import Meta from "./meta";
 export default {
-  name: "FormUsers",
+  name: Meta.formName,
   data() {
     return {
       Meta,
