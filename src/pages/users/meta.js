@@ -14,6 +14,13 @@ const Meta = {
 		{ label: 'Users', icon: 'group' },
 		{ label: 'Add' },
 	],
+	permissions: {
+		create: false,
+		read: false,
+		update: false,
+		delete: false,
+		write: false
+	},
 	model: {
 		id: null,
 		role_id: null,
@@ -22,10 +29,11 @@ const Meta = {
 	},
 	table: (H, L) => {
 		return [
-			{ name: 'action', label: L.action, field: 'id' },
-			{ name: 'role_id', label: L.role, field: 'role_name' },
-			{ name: 'name', label: L.name, field: 'name' },
-			{ name: 'username', label: L.username, field: 'username' }
+			{ name: 'action', label: L.action, field: 'id', style: 'width: 20px', align: 'center' },
+			{ name: 'role_id', label: L.role, field: val => val.role_name, align: 'center' },
+			{ name: 'name', label: L.name, field: 'name', align: 'center' },
+			{ name: 'username', label: L.username, field: 'username', align: 'center' },
+			{ name: 'email', label: L.email, field: 'email', align: 'center' },
 		]
 	}
 }

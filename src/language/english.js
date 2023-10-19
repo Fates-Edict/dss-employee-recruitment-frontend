@@ -12,5 +12,8 @@ export const EN = {
 	username: 'Username',
 	email: 'Email',
 	password: 'Password',
-	slug: 'Slug'
+	slug: 'Slug',
+	update: 'Update',
+	delete: 'Delete',
+	detail: 'Detail'
 }

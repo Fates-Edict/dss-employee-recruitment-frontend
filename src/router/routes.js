@@ -13,6 +13,7 @@ const routes = [
 
       { name: 'index-users', path: '/users', component: () => import('pages/users/index.vue') },
       { name: 'add-users', path: '/users/form', component: () => import('pages/users/form.vue') },
+      { name: 'edit-users', path: '/users/form/:id', component: () => import('pages/users/form.vue') },
       
       { name: 'index-roles', path: '/roles', component: () => import('pages/roles/index.vue') },
 

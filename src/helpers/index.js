@@ -20,7 +20,15 @@ export const Helper = {
 		const table = {
 			columns: [...columns],
 			data: [],
-			selected: []
+			selected: [],
+			loading: false,
+			pagination: {
+				sortBy: 'id',
+				descending: true,
+				page: 1,
+				rowsPerPage: 5,
+				rowsNumber: 10
+			}
 		}
 		return table
 	},
@@ -46,5 +54,26 @@ export const Helper = {
 			headers: { Authorization: `Bearer ${token}` }
 		}
 		return config
+	},
+
+	handlePagination(page, rowsPerPage, sortBy, descending, rowsNumber) {
+		let result = { sortBy, descending, page, rowsPerPage, rowsNumber }
+		return result
+	},
+
+	slugify(str) {
+		return String(str)
+			.normalize('NFKD') // split accented characters into their base characters and diacritical marks
+			.replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
+			.trim() // trim leading or trailing whitespace
+			.toLowerCase() // convert to lowercase
+			.replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
+			.replace(/\s+/g, '-') // replace spaces with hyphens
+			.replace(/-+/g, '-'); // remove consecutive hyphens
+	},
+
+	extractPermissions(meta) {
+		const permissions = JSON.parse(sessionStorage.getItem('permissions')).find(obj => obj.slug === meta.endpoint)
+		return permissions
 	}
 }

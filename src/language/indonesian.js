@@ -12,5 +12,8 @@ export const ID = {
 	username: 'Username',
 	email: 'Email',
 	password: 'Kata Sandi',
-	slug: 'Slug'
+	slug: 'Slug',
+	update: 'Ubah',
+	delete: 'Hapus',
+	detail: 'Detail'
 }

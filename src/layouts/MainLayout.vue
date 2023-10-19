@@ -79,11 +79,15 @@ export default {
       }
       this.$api.get('me', config).then((full) => {
         if(full.status === 200) {
-          
+          const data = full.data.data
+          const permissions = JSON.stringify(data.role.permissions)
+          sessionStorage.removeItem('permissions')
+          sessionStorage.setItem('permissions', permissions)
         }
       }).catch((resE) => {
         if(resE.response.status === 401) {
           localStorage.removeItem('token')
+          sessionStorage.removeItem('permissions')
           this.$router.push({ name: 'login' })
         }
       })

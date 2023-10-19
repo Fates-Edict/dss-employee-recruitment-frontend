@@ -1,24 +1,12 @@
 <template>
-  <div style="width: 100%">
+  <div style="width: 100%" class="q-py-md">
     <div class="row">
-      <q-input
-        class="text-capitalize"
-        outlined
-        v-model="text"
-        :label="$Lang.search"
-        dense
-      >
-        <template v-slot:prepend>
-          <q-icon name="search" />
-        </template>
-        <template v-slot:append>
-          <q-icon name="close" @click="text = ''" class="cursor-pointer" />
-        </template>
-      </q-input>
+      <slot name="search" />
 
       <q-space />
 
       <q-btn
+        v-if="meta.permissions.create"
         color="primary"
         size="sm"
         icon="add"
@@ -35,6 +23,7 @@
 <script>
 export default {
   name: "TopTable",
+  props: ['meta'],
   emits: ["addEvent"],
 };
 </script>

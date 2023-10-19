@@ -18,13 +18,12 @@
       />
     </q-breadcrumbs>
 
-    
     <FormWrapper :meta="Meta">
       <div class="col-12 row q-col-gutter-md">
-        <q-input class="col-12 col-md-4" outlined v-model="text" :label="$Lang.name" dense />
-        <q-input class="col-12 col-md-4" outlined v-model="text" :label="$Lang.username" dense />
-        <q-input class="col-12 col-md-4" outlined v-model="text" :label="$Lang.email" dense />
-        <q-input class="col-12 col-md-4" outlined v-model="text" :label="$Lang.password" dense />
+        <q-input class="col-12 col-md-4" outlined v-model="dataModel.name" :label="$Lang.name" dense />
+        <q-input class="col-12 col-md-4" outlined v-model="dataModel.username" :label="$Lang.username" dense />
+        <q-input class="col-12 col-md-4" outlined v-model="dataModel.email" :label="$Lang.email" dense />
+        <q-input class="col-12 col-md-4" outlined v-model="dataModel.password" :label="$Lang.password" dense />
       </div>
     </FormWrapper>
   </div>
@@ -36,7 +35,22 @@ export default {
   data() {
     return {
       Meta,
-    };
+      dataModel: null
+    }
   },
+
+  created() {
+    this.dataModel = this.$Helper.unReactive(this.Meta.model)
+    if(this.$route.params.id) this.getData(this.$route.params.id)
+  },
+
+  methods: {
+    getData(id) {
+      const endpoint = this.Meta.endpoint + `/${id}`
+      this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
+        if(response.status === 200) this.dataModel = response.data.data
+      })
+    }
+  }
 };
 </script>

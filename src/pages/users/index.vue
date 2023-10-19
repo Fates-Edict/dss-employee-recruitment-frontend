@@ -14,20 +14,41 @@
 
     <q-table
       flat
+      dense
       bordered
       :rows="table.data"
       :columns="table.columns"
       row-key="name"
       style="height: 80vh"
-      :loading="loading"
+      :loading="table.loading"
       :rows-per-page-options="$Helper.rowsPerPageOptions()"
       selection="multiple"
       v-model:selected="table.selected"
-      rowsNumber="10"
+      v-model:pagination="table.pagination"
+      @request="getData"
+      binary-state-sort
     >
-      <template v-slot:top><TopTable @addEvent="onAdd()" /></template>
+      <template v-slot:top>
+        <TopTable :meta="Meta" @addEvent="onAdd()">
+          <template v-slot:search>
+            <div class="col-6 col-sm-3 col-md-2">
+              <q-input class="text-capitalize" outlined v-model="quickSearch" :label="$Lang.search" dense>
+              <template v-slot:prepend>
+                <q-icon name="search" />
+              </template>
+              <template v-slot:append>
+                <q-icon name="close" @click="quickSearch = ''" class="cursor-pointer" />
+              </template>
+            </q-input>
+            </div>
+          </template>
+        </TopTable>
+      </template>
+
       <template v-slot:body-cell-action="props">
-        {{ props.row }}
+        <q-td :props="props">
+          <ActionButtonTable :id="props.row.id" :meta="Meta" @onClickEdit="onClickEdit($event)" @onClickDetail="onClickDetail" @onClickDelete="onClickDelete" />
+        </q-td>
       </template>
     </q-table>
   </div>
@@ -43,26 +64,52 @@ export default {
       loading: false,
       Meta,
       table: null,
+      quickSearch: null
     };
   },
   created() {
     this.table = this.$Helper.makeTable(
       this.Meta.table(this.$Helper, this.$Lang)
-    );
-    this.getData();
+    )
+    this.Meta.permissions = this.$Helper.extractPermissions(this.Meta)
+    this.getData(this.table)
+  },
+  watch: {
+    'quickSearch'() {
+      this.getData(this.table)
+    }
   },
   methods: {
-    getData() {
-      const endpoint = this.$Helper.baseApi() + this.Meta.endpoint;
-      this.$api.get(this.Meta.endpoint, this.$Helper.getToken()).then((response) => {
-        if (response.status === 200) {
-          const data = response.data.data;
+    getData(props) {
+      this.table.loading = true
+      const { page, rowsPerPage, sortBy, descending } = props.pagination
+      const orderType = descending ? 'DESC' : 'ASC'
+      let endpoint = this.Meta.endpoint + '?table'
+      endpoint += '&page=' + page
+      endpoint += '&paginate=' + rowsPerPage
+      endpoint += '&order=' + sortBy + ':' + orderType
+      this.quickSearch ? endpoint += '&s=' + this.quickSearch : ''
+      this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
+        this.table.loading = false
+        if(response.status === 200) {
+          const data = response.data.data
+          this.table.data.splice(0, this.table.data.length, ...data.data)
+          this.table.pagination = this.$Helper.handlePagination(page, rowsPerPage, sortBy, descending, data.total)
         }
       });
     },
     onAdd() {
       this.$router.push({ name: "add-users" });
     },
+    onClickEdit(id) {
+      this.$router.push({ name: `edit-${this.Meta.endpoint}`, params: { id } })
+    },
+    onClickDetail() {
+      console.log('Detail')
+    },
+    onClickDelete() {
+      console.log('Delete')
+    }
   },
 };
 </script>
