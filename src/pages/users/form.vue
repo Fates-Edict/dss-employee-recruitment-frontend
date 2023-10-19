@@ -18,7 +18,7 @@
       />
     </q-breadcrumbs>
     
-    <q-form @submit.prevent="onSubmit" class="col-12 row">
+    <q-form @submit.prevent="onSubmit" class="col-12 row" autocomplete="off">
       <HeaderForm :meta="Meta" />
 
       <CardGeneral>

@@ -17,37 +17,83 @@
         "
       />
     </q-breadcrumbs>
+    
+    <q-form @submit.prevent="onSubmit" class="col-12 row" autocomplete="off">
+      <HeaderForm :meta="Meta" />
 
-    <FormWrapper :meta="Meta" @onSubmit="onSubmit">
-      <q-form @submit="onSubmit" class="col-12 row">
+      <CardGeneral>
         <div class="col-12 row q-col-gutter-md">
-          <q-input class="col-12 col-md-3" outlined v-model="dataModel.name" :label="$Lang.name" dense />
+          <q-input :error="errors.name ? true : false" :error-message="errors.name" class="col-12 col-md-4" outlined v-model="dataModel.name" :label="$Lang.name" dense />
         </div>
-      </q-form>
-    </FormWrapper>
+      </CardGeneral>
+    </q-form>
   </div>
 </template>
 <script>
 import Meta from "./meta";
 export default {
-  name: "FormUsers",
+  name: Meta.formName,
   data() {
     return {
       Meta,
-      dataModel: null
-    };
+      dataModel: null,
+      roles: [],
+      errors: [],
+      disableSubmit: false
+    }
   },
 
   created() {
     this.dataModel = this.$Helper.unReactive(this.Meta.model)
+    this.getRoles()
+    if(this.$route.params.id) this.getData(this.$route.params.id)
   },
 
   methods: {
+    getData(id) {
+      const endpoint = this.Meta.endpoint + `/${id}`
+      this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
+        if(response.status === 200) this.dataModel = response.data.data
+      })
+    },
+
+    getRoles() {
+      const endpoint = 'roles'
+      this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
+        if(response.status === 200) this.roles = response.data.data
+      })
+    },
+
+    save() {
+      const endpoint = this.Meta.endpoint
+      this.$api.post(endpoint, this.dataModel, this.$Helper.getToken()).then((response) => {
+        if(response.status === 201) {
+          this.$Helper.alertSuccess(response.data.msg)
+          this.$router.push({ name: `index-${this.Meta.endpoint}` })
+        }
+      }).catch((resE) => {
+        this.disableSubmit = false
+        if(resE.response.status === 400) this.errors = this.$Helper.extractErrors(resE.response.data.data, this.Meta.model)
+      })
+    },
+
+    update() {
+      const endpoint = this.Meta.endpoint + '/' + this.$route.params.id
+      this.$api.put(endpoint, this.dataModel, this.$Helper.getToken()).then((response) => {
+        if(response.status === 201) {
+          this.$Helper.alertSuccess(response.data.msg)
+          this.$router.push({ name: `index-${this.Meta.endpoint}` })
+        }
+      }).catch((resE) => {
+        this.disableSubmit = false
+        if(resE.response.status === 400) this.errors = this.$Helper.extractErrors(resE.response.data.data, this.Meta.model)
+      })
+    },
+
     onSubmit() {
-      // this.$axios.defaults.withCredentials = true;
-      // this.$axios.get(`${this.$Helper.rootBaseApi()}/sanctum/csrf-cookie`).then((response) => {
-      //   console.log(response)
-      // })
+      this.disableSubmit = true
+      if(this.$route.params.id) this.update()
+      else this.save()
     }
   }
 };

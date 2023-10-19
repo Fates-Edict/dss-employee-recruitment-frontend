@@ -19,6 +19,7 @@ const routes = [
 
       { name: 'index-modules', path: '/modules', component: () => import('pages/modules/index.vue') },
       { name: 'add-modules', path: '/modules/form', component: () => import('pages/modules/form.vue') },
+      { name: 'edit-modules', path: '/modules/form/:id', component: () => import('pages/modules/form.vue') },
     ]
   },
 
