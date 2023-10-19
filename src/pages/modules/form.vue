@@ -37,7 +37,6 @@ export default {
     return {
       Meta,
       dataModel: null,
-      roles: [],
       errors: [],
       disableSubmit: false
     }
@@ -45,7 +44,6 @@ export default {
 
   created() {
     this.dataModel = this.$Helper.unReactive(this.Meta.model)
-    this.getRoles()
     if(this.$route.params.id) this.getData(this.$route.params.id)
   },
 
@@ -54,13 +52,6 @@ export default {
       const endpoint = this.Meta.endpoint + `/${id}`
       this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
         if(response.status === 200) this.dataModel = response.data.data
-      })
-    },
-
-    getRoles() {
-      const endpoint = 'roles'
-      this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
-        if(response.status === 200) this.roles = response.data.data
       })
     },
 

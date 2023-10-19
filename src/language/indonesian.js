@@ -19,5 +19,7 @@ export const ID = {
 	close: 'Tutup',
 	deleting: 'Menghapus',
 	pleaseWait: 'Mohon tunggu',
-	confirmDelete: 'Apa anda yakin ingin menghapus '
+	confirmDelete: 'Apa anda yakin ingin menghapus ',
+	permissions: 'Hak Akses',
+	selectAll: 'Pilih Semua'
 }

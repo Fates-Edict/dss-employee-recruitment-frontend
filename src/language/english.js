@@ -19,5 +19,7 @@ export const EN = {
 	close: 'Close',
 	deleting: 'Deleting',
 	pleaseWait: 'Please Wait',
-	confirmDelete: 'Are you sure want to delete '
+	confirmDelete: 'Are you sure want to delete ',
+	permissions: 'Permissions',
+	selectAll: 'Select All'
 }

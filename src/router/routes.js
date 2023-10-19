@@ -16,6 +16,8 @@ const routes = [
       { name: 'edit-users', path: '/users/form/:id', component: () => import('pages/users/form.vue') },
       
       { name: 'index-roles', path: '/roles', component: () => import('pages/roles/index.vue') },
+      { name: 'add-roles', path: '/roles/form', component: () => import('pages/roles/form.vue') },
+      { name: 'edit-roles', path: '/roles/form/:id', component: () => import('pages/roles/form.vue') },
 
       { name: 'index-modules', path: '/modules', component: () => import('pages/modules/index.vue') },
       { name: 'add-modules', path: '/modules/form', component: () => import('pages/modules/form.vue') },
