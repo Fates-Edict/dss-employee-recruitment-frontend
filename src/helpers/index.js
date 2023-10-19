@@ -1,3 +1,5 @@
+import { Notify } from 'quasar'
+
 export const Helper = {
 	getCurrentLanguage() {
 		const lang = localStorage.getItem('language')
@@ -75,5 +77,32 @@ export const Helper = {
 	extractPermissions(meta) {
 		const permissions = JSON.parse(sessionStorage.getItem('permissions')).find(obj => obj.slug === meta.endpoint)
 		return permissions
-	}
+	},
+
+	extractErrors(arr, metaRaw) {
+		if(arr) {
+			const meta = Object.keys(metaRaw)
+			let errors = {}
+			meta.forEach(element => {
+				const key = element
+				if(arr[element]) errors[key] = arr[element][0]
+				else errors[key] = null
+			})
+			return errors
+		}
+	},
+
+	alertSuccess(message) {
+		Notify.create({
+			type: 'positive',
+			message
+		})
+	},
+
+	alertError(message) {
+		Notify.create({
+			type: 'negative',
+			message
+		})
+	},
 }

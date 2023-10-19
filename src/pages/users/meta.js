@@ -25,7 +25,9 @@ const Meta = {
 		id: null,
 		role_id: null,
 		name: null,
-		username: null
+		username: null,
+		password: null,
+		email: null
 	},
 	table: (H, L) => {
 		return [
