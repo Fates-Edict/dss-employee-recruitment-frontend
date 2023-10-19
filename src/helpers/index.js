@@ -1,4 +1,4 @@
-import { Notify } from 'quasar'
+import { Loading, Notify } from 'quasar'
 
 export const Helper = {
 	getCurrentLanguage() {
@@ -105,4 +105,9 @@ export const Helper = {
 			message
 		})
 	},
+
+	loadingOverlay(show = false, message) {
+		Loading.show({ message })
+    if(show === false) setTimeout(() => { Loading.hide() }, 300)
+	}
 }

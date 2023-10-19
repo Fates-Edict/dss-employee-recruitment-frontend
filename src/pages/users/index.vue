@@ -29,7 +29,7 @@
       binary-state-sort
     >
       <template v-slot:top>
-        <TopTable :meta="Meta" @addEvent="onAdd()">
+        <TopTable v-model="table" :meta="Meta" @addEvent="onAdd()" @refresh="getData(table)">
           <template v-slot:search>
             <div class="col-6 col-sm-3 col-md-2">
               <q-input class="text-capitalize" outlined v-model="quickSearch" :label="$Lang.search" dense>
@@ -47,12 +47,12 @@
 
       <template v-slot:body-cell-action="props">
         <q-td :props="props">
-          <ActionButtonTable :id="props.row.id" :meta="Meta" @onClickEdit="onClickEdit($event)" @onClickDetail="onClickDetail" @onClickDelete="onClickDelete" />
+          <ActionButtonTable :id="props.row.id" :meta="Meta" @onClickEdit="onClickEdit($event)" @onClickDetail="onClickDetail" />
         </q-td>
       </template>
     </q-table>
 
-    <ModalGeneral :config="modal">
+    <ModalGeneral generalContent :config="modal">
       <template v-slot:closeBtn>
         <q-btn dense flat icon="close" v-close-popup @click="modal.show = false">
 					<q-tooltip>{{ $Lang.close }}</q-tooltip>
@@ -99,7 +99,7 @@ export default {
       const orderType = descending ? 'DESC' : 'ASC'
       let endpoint = this.Meta.endpoint + '?table'
       endpoint += '&page=' + page
-      endpoint += '&paginate=' + rowsPerPage
+      endpoint += '&paginate=' + (rowsPerPage === 0 ? props.pagination.rowsNumber : rowsPerPage)
       endpoint += '&order=' + sortBy + ':' + orderType
       this.quickSearch ? endpoint += '&s=' + this.quickSearch : ''
       this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
@@ -131,9 +131,6 @@ export default {
           this.modal.show = !this.modal.show
         }
       })
-    },
-    onClickDelete() {
-      console.log('Delete')
     }
   },
 };

@@ -16,5 +16,8 @@ export const EN = {
 	update: 'Update',
 	delete: 'Delete',
 	detail: 'Detail',
-	close: 'Close'
+	close: 'Close',
+	deleting: 'Deleting',
+	pleaseWait: 'Please Wait',
+	confirmDelete: 'Are you sure want to delete '
 }

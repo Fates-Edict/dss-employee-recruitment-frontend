@@ -16,5 +16,8 @@ export const ID = {
 	update: 'Ubah',
 	delete: 'Hapus',
 	detail: 'Detail',
-	close: 'Tutup'
+	close: 'Tutup',
+	deleting: 'Menghapus',
+	pleaseWait: 'Mohon tunggu',
+	confirmDelete: 'Apa anda yakin ingin menghapus '
 }
