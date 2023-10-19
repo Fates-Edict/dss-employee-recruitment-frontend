@@ -14,7 +14,7 @@ const Meta = {
 		{ label: 'Home', icon: 'home' },
 		{ label: 'User Managements', icon: 'manage_accounts' },
 		{ label: 'Users', icon: 'group' },
-		{ label: 'Add' },
+		{ label: 'Form' },
 	],
 	permissions: {
 		create: false,

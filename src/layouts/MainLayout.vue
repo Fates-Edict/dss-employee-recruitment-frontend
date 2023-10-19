@@ -52,9 +52,9 @@ export default {
         { label: 'Dashboard', icon: 'home', path: '/', childs: [] },
         { label: 'User Managements', icon: 'manage_accounts', path: '', 
           childs: [
-            { label: 'Users', icon: 'group', path: '/users', module: 'users' },
-            { label: 'Roles', icon: 'admin_panel_settings', path: '/roles', module: 'roles' },
-            { label: 'Modules', icon: 'content_copy', path: '/modules', module: 'modules' },
+            { label: 'Users', icon: 'group', path: '/users' },
+            { label: 'Roles', icon: 'admin_panel_settings', path: '/roles' },
+            { label: 'Modules', icon: 'content_copy', path: '/modules' },
           ]
         },
       ],
