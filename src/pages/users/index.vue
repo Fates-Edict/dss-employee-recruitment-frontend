@@ -52,7 +52,7 @@
       </template>
     </q-table>
 
-    <ModalGeneral title="Detail" :config="modal">
+    <ModalGeneral :config="modal">
       <template v-slot:closeBtn>
         <q-btn dense flat icon="close" v-close-popup @click="modal.show = false">
 					<q-tooltip>{{ $Lang.close }}</q-tooltip>
@@ -74,6 +74,7 @@ export default {
       table: null,
       quickSearch: null,
       modal: {
+        title: '',
         show: false,
         params: null
       }
@@ -125,6 +126,7 @@ export default {
           details.forEach(element => {
             element.value = data[element.key]
           })
+          this.modal.title = data.name
           this.modal.params = details
           this.modal.show = !this.modal.show
         }

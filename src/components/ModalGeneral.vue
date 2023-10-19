@@ -2,7 +2,7 @@
 	<q-dialog v-model="show" persistent>
 		<q-card style="width: 90vw; height: 80vh">
 			<q-bar style="position: sticky; top: 0; z-index: 10" class="bg-grey-8 text-white">
-				{{ title }}
+				{{ config.title ?? 'Detail' }}
 				<q-space />
 
 				<slot name="closeBtn" />
@@ -25,7 +25,7 @@
 <script>
 export default {
 	name: 'ModalGeneral',
-	props: ['title', 'config'],
+	props: ['config'],
 	data() {
 		return {
 			show: false
