@@ -86,6 +86,7 @@ export default {
             { label: 'Master Data', icon: 'folder', path: '', 
               childs: [
                 { label: 'Job Vacancies', icon: 'work_history', path: '/job-vacancies' },
+                { label: 'Alternatives', icon: 'badge', path: '/alternatives' },
               ]
             }
           ]

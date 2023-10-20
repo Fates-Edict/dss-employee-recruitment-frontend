@@ -26,6 +26,10 @@ const routes = [
       { name: 'index-job-vacancies', path: '/job-vacancies', component: () => import('pages/job-vacancies/index.vue') },
       { name: 'add-job-vacancies', path: '/job-vacancies/form', component: () => import('pages/job-vacancies/form.vue') },
       { name: 'edit-job-vacancies', path: '/job-vacancies/form/:id', component: () => import('pages/job-vacancies/form.vue') },
+
+      { name: 'index-alternatives', path: '/alternatives', component: () => import('pages/alternatives/index.vue') },
+      { name: 'add-alternatives', path: '/alternatives/form', component: () => import('pages/alternatives/form.vue') },
+      { name: 'edit-alternatives', path: '/alternatives/form/:id', component: () => import('pages/alternatives/form.vue') },
     ]
   },
 
