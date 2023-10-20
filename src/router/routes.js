@@ -22,6 +22,10 @@ const routes = [
       { name: 'index-modules', path: '/modules', component: () => import('pages/modules/index.vue') },
       { name: 'add-modules', path: '/modules/form', component: () => import('pages/modules/form.vue') },
       { name: 'edit-modules', path: '/modules/form/:id', component: () => import('pages/modules/form.vue') },
+
+      { name: 'index-job-vacancies', path: '/job-vacancies', component: () => import('pages/job-vacancies/index.vue') },
+      { name: 'add-job-vacancies', path: '/job-vacancies/form', component: () => import('pages/job-vacancies/form.vue') },
+      { name: 'edit-job-vacancies', path: '/job-vacancies/form/:id', component: () => import('pages/job-vacancies/form.vue') },
     ]
   },
 

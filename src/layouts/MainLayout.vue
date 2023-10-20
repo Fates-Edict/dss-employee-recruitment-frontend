@@ -48,16 +48,7 @@ export default {
   data() {
     return {
       leftDrawerOpen: false,
-      menus: [
-        { label: 'Dashboard', icon: 'home', path: '/', childs: [] },
-        { label: 'User Managements', icon: 'manage_accounts', path: '', 
-          childs: [
-            { label: 'Users', icon: 'group', path: '/users' },
-            { label: 'Roles', icon: 'admin_panel_settings', path: '/roles' },
-            { label: 'Modules', icon: 'content_copy', path: '/modules' },
-          ]
-        },
-      ],
+      menus: [],
       languages: [
         { label: 'English', slug: 'EN' },
         { label: 'Indonesia', slug: 'ID' }
@@ -83,6 +74,32 @@ export default {
           const permissions = JSON.stringify(data.role.permissions)
           sessionStorage.removeItem('permissions')
           sessionStorage.setItem('permissions', permissions)
+          let menus = [
+            { label: 'Dashboard', icon: 'home', path: '/', childs: [] },
+            { label: 'User Managements', icon: 'manage_accounts', path: '', 
+              childs: [
+                { label: 'Users', icon: 'group', path: '/users' },
+                { label: 'Roles', icon: 'admin_panel_settings', path: '/roles' },
+                { label: 'Modules', icon: 'content_copy', path: '/modules' },
+              ]
+            },
+            { label: 'Master Data', icon: 'folder', path: '', 
+              childs: [
+                { label: 'Job Vacancies', icon: 'work_history', path: '/job-vacancies' },
+              ]
+            }
+          ]
+
+          const checkPermissions = JSON.parse(sessionStorage.getItem('permissions'))
+          menus.forEach(element => {
+            if(element.childs.length === 0) {
+              const compare = checkPermissions.find(obj => obj.name === element.label)
+              !compare.read ? menus = menus.filter(obj => obj.label !== compare.name) : ''
+            } else {
+
+            }
+          })
+          this.menus = menus
         }
       }).catch((resE) => {
         if(resE.response.status === 401) {

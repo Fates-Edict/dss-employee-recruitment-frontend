@@ -42,7 +42,7 @@
               <tr v-for="val, i in dataModel.permissions" :key="i">
                 <td class="text-center">{{ val.name }}</td>
                 <td class="text-center">
-                  <q-checkbox v-model="val.browse" />
+                  <q-checkbox v-if="val.name !== 'Dashboard'" v-model="val.browse" />
                 </td>
                 <td class="text-center">
                   <q-checkbox v-if="val.name !== 'Dashboard'" v-model="val.create" />
