@@ -30,6 +30,10 @@ const routes = [
       { name: 'index-alternatives', path: '/alternatives', component: () => import('pages/alternatives/index.vue') },
       { name: 'add-alternatives', path: '/alternatives/form', component: () => import('pages/alternatives/form.vue') },
       { name: 'edit-alternatives', path: '/alternatives/form/:id', component: () => import('pages/alternatives/form.vue') },
+
+      { name: 'index-criteria', path: '/criteria', component: () => import('pages/criteria/index.vue') },
+      { name: 'add-criteria', path: '/criteria/form', component: () => import('pages/criteria/form.vue') },
+      { name: 'edit-criteria', path: '/criteria/form/:id', component: () => import('pages/criteria/form.vue') },
     ]
   },
 

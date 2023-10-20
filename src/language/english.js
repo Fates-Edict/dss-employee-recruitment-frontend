@@ -21,5 +21,6 @@ export const EN = {
 	pleaseWait: 'Please Wait',
 	confirmDelete: 'Are you sure want to delete ',
 	permissions: 'Permissions',
-	selectAll: 'Select All'
+	selectAll: 'Select All',
+	type: 'Type'
 }

@@ -25,8 +25,7 @@ const Meta = {
 	},
 	model: {
 		id: null,
-		name: null,
-		slug: null
+		name: null
 	},
 	details: (L) => {
 		return [

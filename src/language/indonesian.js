@@ -21,5 +21,6 @@ export const ID = {
 	pleaseWait: 'Mohon tunggu',
 	confirmDelete: 'Apa anda yakin ingin menghapus ',
 	permissions: 'Hak Akses',
-	selectAll: 'Pilih Semua'
+	selectAll: 'Pilih Semua',
+	type: 'Tipe'
 }

@@ -109,5 +109,9 @@ export const Helper = {
 	loadingOverlay(show = false, message) {
 		Loading.show({ message })
     if(show === false) setTimeout(() => { Loading.hide() }, 300)
+	},
+
+	criteriaType() {
+		return ['cost', 'benefit']
 	}
 }
