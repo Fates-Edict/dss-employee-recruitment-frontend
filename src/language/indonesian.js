@@ -22,5 +22,10 @@ export const ID = {
 	confirmDelete: 'Apa anda yakin ingin menghapus ',
 	permissions: 'Hak Akses',
 	selectAll: 'Pilih Semua',
-	type: 'Tipe'
+	type: 'Tipe',
+	criteriaName: 'Nama Kriteria',
+	alternativeName: 'Nama Alternatif',
+	noData: 'Tida Ada Data Tersedia',
+	value: 'Isi',
+	detailCriteria: 'Detail Kriteria'
 }

@@ -33,7 +33,7 @@ const routes = [
 
       { name: 'index-criteria', path: '/criteria', component: () => import('pages/criteria/index.vue') },
       { name: 'add-criteria', path: '/criteria/form', component: () => import('pages/criteria/form.vue') },
-      { name: 'edit-criteria', path: '/criteria/form/:id', component: () => import('pages/criteria/form.vue') },
+      { name: 'edit-criteria', path: '/criteria/form/:id', component: () => import('pages/criteria/form.vue') }
     ]
   },
 

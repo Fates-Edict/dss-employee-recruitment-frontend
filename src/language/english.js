@@ -22,5 +22,10 @@ export const EN = {
 	confirmDelete: 'Are you sure want to delete ',
 	permissions: 'Permissions',
 	selectAll: 'Select All',
-	type: 'Type'
+	type: 'Type',
+	criteriaName: 'Criteria Name',
+	alternativeName: 'Alternative Name',
+	noData: 'No Data Available',
+	value: 'Value',
+	detailCriteria: 'Detail Criteria'
 }
