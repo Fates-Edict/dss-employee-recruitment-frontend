@@ -7,12 +7,12 @@ const Meta = {
 	formName: 'FormJobVacancies',
 	breadcrumbsIndex: [
 		{ label: 'Home', icon: 'home' },
-		{ label: 'Master', icon: 'manage_accounts' },
+		{ label: 'Master Data', icon: 'folder' },
 		{ label: 'Job Vacancies' }
 	],
 	breadcrumbsForm: [
 		{ label: 'Home', icon: 'home' },
-		{ label: 'Master', icon: 'manage_accounts' },
+		{ label: 'Master Data', icon: 'folder' },
 		{ label: 'Job Vacancies', icon: 'group' },
 		{ label: 'Form' },
 	],

@@ -87,7 +87,7 @@ export default {
               childs: [
                 { label: 'Job Vacancies', icon: 'work_history', path: '/job-vacancies' },
                 { label: 'Alternatives', icon: 'badge', path: '/alternatives' },
-                { label: 'Criteria', icon: 'badge', path: '/criteria' },
+                { label: 'Criteria', icon: 'zoom_out_map', path: '/criteria' },
               ]
             }
           ]

@@ -7,12 +7,12 @@ const Meta = {
 	formName: 'FormCriteria',
 	breadcrumbsIndex: [
 		{ label: 'Home', icon: 'home' },
-		{ label: 'User Managements', icon: 'manage_accounts' },
+		{ label: 'Master Data', icon: 'folder' },
 		{ label: 'Criteria' }
 	],
 	breadcrumbsForm: [
 		{ label: 'Home', icon: 'home' },
-		{ label: 'User Managements', icon: 'manage_accounts' },
+		{ label: 'Master Data', icon: 'folder' },
 		{ label: 'Criteria', icon: 'group' },
 		{ label: 'Form' },
 	],

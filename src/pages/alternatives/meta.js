@@ -7,12 +7,12 @@ const Meta = {
 	formName: 'FormAlternatives',
 	breadcrumbsIndex: [
 		{ label: 'Home', icon: 'home' },
-		{ label: 'Master Data', icon: 'manage_accounts' },
+		{ label: 'Master Data', icon: 'folder' },
 		{ label: 'Alternatives' }
 	],
 	breadcrumbsForm: [
 		{ label: 'Home', icon: 'home' },
-		{ label: 'Master Data', icon: 'manage_accounts' },
+		{ label: 'Master Data', icon: 'folder' },
 		{ label: 'Alternatives', icon: 'group' },
 		{ label: 'Form' },
 	],
