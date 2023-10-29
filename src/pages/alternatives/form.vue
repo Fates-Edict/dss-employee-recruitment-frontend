@@ -113,7 +113,7 @@ export default {
     },
 
     getCriteria() {
-      const endpoint = 'criteria'
+      const endpoint = 'criteria?order=id:desc'
       this.$api.get(endpoint, this.$Helper.getToken()).then((response) => {
         if(response.status === 200) this.criterias = response.data.data
       })

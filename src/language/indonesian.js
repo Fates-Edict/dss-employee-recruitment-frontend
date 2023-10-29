@@ -27,5 +27,6 @@ export const ID = {
 	alternativeName: 'Nama Alternatif',
 	noData: 'Tida Ada Data Tersedia',
 	value: 'Isi',
-	detailCriteria: 'Detail Kriteria'
+	detailCriteria: 'Detail Kriteria',
+	jobVacancyName: 'Nama Posisi Lowongan'
 }

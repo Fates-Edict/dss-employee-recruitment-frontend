@@ -88,6 +88,7 @@ export default {
                 { label: 'Job Vacancies', icon: 'work_history', path: '/job-vacancies' },
                 { label: 'Criteria', icon: 'zoom_out_map', path: '/criteria' },
                 { label: 'Alternatives', icon: 'badge', path: '/alternatives' },
+                { label: 'Simulations', icon: 'psychology', path: '/simulations' },
               ]
             }
           ]

@@ -27,5 +27,6 @@ export const EN = {
 	alternativeName: 'Alternative Name',
 	noData: 'No Data Available',
 	value: 'Value',
-	detailCriteria: 'Detail Criteria'
+	detailCriteria: 'Detail Criteria',
+	jobVacancyName: 'Job Vacancy Name'
 }
